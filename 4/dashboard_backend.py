@@ -14,15 +14,12 @@ try:
 except ImportError:
     REDIS_AVAILABLE = False
 
-# ─────────────────────────────────────────────
 # Config
-# ─────────────────────────────────────────────
 REDIS_HOST      = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT      = int(os.getenv("REDIS_PORT", 6379))
 POLL_INTERVAL_S = 1.0
 HISTORY_WINDOW  = 120  # data points to keep for the harvest-rate chart
 
-# Key prefixes — must match what Person 2's nodes write
 STATS_KEY_PREFIX  = "crawler:stats:"    # + node_id  → JSON
 SCORES_KEY_PREFIX = "crawler:scores:"   # + node_id  → Redis list of floats
 GLOBAL_KEY        = "crawler:global"    # JSON
@@ -30,9 +27,7 @@ GLOBAL_KEY        = "crawler:global"    # JSON
 app = Flask(__name__)
 CORS(app)
 
-# ─────────────────────────────────────────────
 # Redis client (lazy, cached, re-tested each poll)
-# ─────────────────────────────────────────────
 _redis_client = None
 _redis_ok     = False
 
@@ -54,9 +49,8 @@ def get_redis():
         return None, False
 
 
-# ─────────────────────────────────────────────
-# Redis readers — keys match Person 2's schema
-# ─────────────────────────────────────────────
+
+# Redis readers 
 
 def _redis_read_stats(r) -> dict:
     """Read per-node stats and global state from Person 2's Redis keys."""
@@ -110,9 +104,7 @@ def _redis_read_scores(r) -> list:
     return scores
 
 
-# ─────────────────────────────────────────────
 # Mock data (used when Redis is unreachable)
-# ─────────────────────────────────────────────
 
 _mock = {
     "t0":    time.time(),
@@ -166,9 +158,7 @@ def _mock_scores() -> list:
     return high + low
 
 
-# ─────────────────────────────────────────────
 # History buffer for harvest-rate chart
-# ─────────────────────────────────────────────
 _history: deque = deque(maxlen=HISTORY_WINDOW)
 
 def _record_history(stats: dict):
@@ -179,9 +169,7 @@ def _record_history(stats: dict):
     })
 
 
-# ─────────────────────────────────────────────
 # Flask API endpoints
-# ─────────────────────────────────────────────
 
 @app.route("/api/stats")
 def api_stats():
@@ -225,9 +213,7 @@ def api_health():
     return jsonify({"ok": True, "redis": ok})
 
 
-# ─────────────────────────────────────────────
 # Serve the frontend HTML
-# ─────────────────────────────────────────────
 
 _frontend_path = os.path.join(os.path.dirname(__file__), "dashboard_frontend.html")
 
@@ -243,9 +229,7 @@ def index():
     )
 
 
-# ─────────────────────────────────────────────
 # Main
-# ─────────────────────────────────────────────
 
 if __name__ == "__main__":
     _, ok = get_redis()
