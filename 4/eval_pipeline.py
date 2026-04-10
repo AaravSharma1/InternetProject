@@ -1,59 +1,3 @@
-"""
-eval_pipeline.py — Evaluation Pipeline for Semantic Web Crawler
-Person 4: Evaluation, Visualization & Demo
-
-────────────────────────────────────────────────────────────────────────────────
-CSV SCHEMA  (produced by Person 1 — crawler/metrics.py)
-────────────────────────────────────────────────────────────────────────────────
-Column                  Notes
-----------------------  --------------------------------------------------------
-timestamp               Unix epoch float  →  we parse as datetime
-url                     Fetched URL
-bytes_downloaded        Raw bytes received (0 on error)
-fetch_latency_ms        Wall-clock fetch time in ms
-status_code             HTTP status (0 on connection failure)
-is_relevant             Boolean set by caller's relevance_fn
-cumulative_pages        Running total of fetched pages
-cumulative_relevant     Running total of relevant pages
-error                   Error message or empty string
-
-ADDED BY US (multi-run experiment harness — see load_mode_csvs()):
-  mode      "bfs" | "link_priority" | "semantic"   (injected before analysis)
-  node_id   "node_1" … "node_N"                    (optional; defaults to "node_1")
-  run       integer run number 1–3                 (optional; for mean±std)
-
-Columns absent from a plain Person-1 CSV get safe defaults injected
-automatically so the script works with zero changes to their code.
-
-────────────────────────────────────────────────────────────────────────────────
-USAGE
-────────────────────────────────────────────────────────────────────────────────
-# Demo on synthetic data (no real CSV needed):
-    python eval_pipeline.py --demo
-
-# Single CSV that already has a 'mode' column:
-    python eval_pipeline.py --log crawl_metrics.csv --output results/
-
-# Three separate CSVs, one per mode (most common during integration week):
-    python eval_pipeline.py \
-        --bfs  runs/bfs_crawl_metrics.csv \
-        --link runs/link_crawl_metrics.csv \
-        --sem  runs/semantic_crawl_metrics.csv \
-        --output results/
-
-# Multiple runs per mode for mean±std (comma-separated paths):
-    python eval_pipeline.py \
-        --bfs  bfs_r1.csv,bfs_r2.csv,bfs_r3.csv \
-        --link link_r1.csv,link_r2.csv,link_r3.csv \
-        --sem  sem_r1.csv,sem_r2.csv,sem_r3.csv \
-        --output results/
-
-────────────────────────────────────────────────────────────────────────────────
-DEPENDENCIES
-────────────────────────────────────────────────────────────────────────────────
-    pip install pandas matplotlib datasketch numpy
-"""
-
 import argparse
 import os
 import warnings
@@ -69,26 +13,24 @@ from datasketch import MinHash, MinHashLSH
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-
-# ─────────────────────────────────────────────────────────────────────────────
 # Constants / schema contract
-# ─────────────────────────────────────────────────────────────────────────────
 
-# Columns Person 1 guarantees (crawler/metrics.py FIELDNAMES)
+
+
 P1_REQUIRED_COLS = {
     "timestamp",
     "url",
-    "bytes_downloaded",      # NOTE: NOT "bytes" — matches Person 1 exactly
-    "fetch_latency_ms",      # NOTE: NOT "fetch_ms"
+    "bytes_downloaded",      
+    "fetch_latency_ms",      
     "status_code",
     "is_relevant",
     "cumulative_pages",
     "cumulative_relevant",
 }
 
-# Columns our harness adds (absent from plain P1 CSV → defaults injected)
-RELEVANCE_SCORE_COL = "relevance_score"   # float 0-1 from Person 3's scorer
-PAGE_TEXT_COL       = "page_text"         # full page text for MinHash
+
+RELEVANCE_SCORE_COL = "relevance_score"   
+PAGE_TEXT_COL       = "page_text"         
 NODE_ID_COL         = "node_id"
 MODE_COL            = "mode"
 RUN_COL             = "run"
@@ -112,12 +54,12 @@ MODE_DASHES = {
 
 JACCARD_THRESHOLD = 0.8
 MINHASH_NUM_PERM  = 128
-SHINGLE_SIZE      = 5   # 5-word shingles
+SHINGLE_SIZE      = 5   
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+
 # 1. Loading & normalisation
-# ─────────────────────────────────────────────────────────────────────────────
+
 
 def _load_single_csv(path: str) -> pd.DataFrame:
     """
@@ -134,7 +76,7 @@ def _load_single_csv(path: str) -> pd.DataFrame:
             f"\n  Found:   {sorted(df.columns.tolist())}"
         )
 
-    # timestamp: Person 1 stores Unix epoch floats
+
     df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s", utc=True)
 
     df["is_relevant"]      = df["is_relevant"].astype(bool)
@@ -144,7 +86,6 @@ def _load_single_csv(path: str) -> pd.DataFrame:
     df["cumulative_pages"]    = pd.to_numeric(df["cumulative_pages"],    errors="coerce").fillna(0)
     df["cumulative_relevant"] = pd.to_numeric(df["cumulative_relevant"], errors="coerce").fillna(0)
 
-    # Inject defaults for columns absent from plain P1 CSVs
     if MODE_COL not in df.columns:
         df[MODE_COL] = "unknown"
     if NODE_ID_COL not in df.columns:
@@ -152,7 +93,7 @@ def _load_single_csv(path: str) -> pd.DataFrame:
     if RUN_COL not in df.columns:
         df[RUN_COL] = 1
     if RELEVANCE_SCORE_COL not in df.columns:
-        # Derive a pseudo-score so plots still render
+
         df[RELEVANCE_SCORE_COL] = df["is_relevant"].astype(float)
 
     df[MODE_COL] = df[MODE_COL].str.lower().str.strip()
@@ -201,14 +142,13 @@ def make_synthetic_log(n_pages: int = 3000, runs: int = 3) -> pd.DataFrame:
     """
     rng = np.random.default_rng(42)
     rows = []
-    t0 = 1_700_000_000.0  # Unix epoch base
+    t0 = 1_700_000_000.0  
 
     for run in range(1, runs + 1):
         for mode, rel_rate in [("bfs", 0.18), ("link_priority", 0.32), ("semantic", 0.61)]:
             cum_pages = 0
             cum_rel   = 0
             for i in range(n_pages):
-                # Semantic front-loads relevant pages
                 if mode == "semantic":
                     local_rate = rel_rate * (1.4 - 0.8 * i / n_pages)
                 else:
@@ -217,7 +157,7 @@ def make_synthetic_log(n_pages: int = 3000, runs: int = 3) -> pd.DataFrame:
                 cum_pages += 1
                 cum_rel   += int(is_rel)
                 rows.append({
-                    # Person 1 columns (exact names)
+                   
                     "timestamp":          t0 + i * 0.3 + run * 5000,
                     "url":                f"https://example.com/{mode}/{run}/{i}",
                     "bytes_downloaded":   int(rng.integers(5_000, 200_000)),
@@ -227,7 +167,7 @@ def make_synthetic_log(n_pages: int = 3000, runs: int = 3) -> pd.DataFrame:
                     "cumulative_pages":   cum_pages,
                     "cumulative_relevant": cum_rel,
                     "error":              "",
-                    # Our harness columns
+                    
                     MODE_COL:             mode,
                     NODE_ID_COL:          f"node_{rng.integers(1, 5)}",
                     RUN_COL:              run,
@@ -242,9 +182,7 @@ def make_synthetic_log(n_pages: int = 3000, runs: int = 3) -> pd.DataFrame:
     return df.sort_values([MODE_COL, RUN_COL, "timestamp"]).reset_index(drop=True)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 2. MinHash redundancy detection
-# ─────────────────────────────────────────────────────────────────────────────
 
 def _shinglize(text: str, k: int = SHINGLE_SIZE) -> set:
     words = text.lower().split()
@@ -261,15 +199,6 @@ def _make_minhash(text: str) -> MinHash:
 
 
 def compute_redundancy_rate(df: pd.DataFrame) -> dict:
-    """
-    Near-duplicate rate per mode via MinHash LSH.
-
-    Text source priority:
-      1. page_text column  — actual HTML text (best accuracy; optional column)
-      2. url column        — URL fingerprint fallback (always present in P1 CSV)
-
-    Returns {mode: rate_0_to_1}
-    """
     has_text = PAGE_TEXT_COL in df.columns
     if not has_text:
         print("  [warn] 'page_text' column absent — using URL as text proxy for MinHash")
@@ -300,9 +229,7 @@ def compute_redundancy_rate(df: pd.DataFrame) -> dict:
     return results
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 3. Core metrics  (all column references use P1's actual names)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def harvest_rate(df: pd.DataFrame) -> dict:
     """Fraction of crawled pages flagged is_relevant, per mode."""
@@ -318,7 +245,6 @@ def relevance_at_depth(df: pd.DataFrame, sample_points: int = 100) -> dict:
     """
     result = {}
     for mode, group in df.groupby(MODE_COL):
-        # Use run=1 for the curve; multi-run variance shown in mean±std table
         run_ids = sorted(group[RUN_COL].unique())
         first   = group[group[RUN_COL] == run_ids[0]].reset_index(drop=True)
         n  = len(first)
@@ -389,9 +315,7 @@ def mean_std_across_runs(df: pd.DataFrame, metric_fn) -> pd.DataFrame:
     return pd.DataFrame(rows).T
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 4. Plotting
-# ─────────────────────────────────────────────────────────────────────────────
 
 def _style_ax(ax, title="", xlabel="", ylabel=""):
     ax.set_facecolor("white")
@@ -474,9 +398,7 @@ def plot_redundancy_bar(redundancy: dict, output_path: str):
     print(f"  Saved → {output_path}")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 5. Summary table
-# ─────────────────────────────────────────────────────────────────────────────
 
 def build_summary_table(df: pd.DataFrame, redundancy: dict) -> pd.DataFrame:
     hr  = harvest_rate(df)
@@ -501,9 +423,7 @@ def build_summary_table(df: pd.DataFrame, redundancy: dict) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("Mode")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 6. Entry point
-# ─────────────────────────────────────────────────────────────────────────────
 
 def _path_list(s: str | None) -> list:
     if not s:
