@@ -1,0 +1,4 @@
+Mode,Harvest rate (%),MB / relevant page,Redundancy (%),Throughput (pg/s/node),Cross-node overhead (KB),Pages crawled
+BFS baseline,18.0,0.57,0.0,0.21,337.5,9000
+Link-priority,32.0,0.32,0.0,0.21,337.5,9000
+Semantic (ours),61.5,0.17,0.0,0.21,337.5,9000
