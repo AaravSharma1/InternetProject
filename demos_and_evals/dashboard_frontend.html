@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semantic Crawler — Live Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: rgba(255,255,255,0.08);
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --green: #1D9E75;
+    --blue: #378ADD;
+    --gray: #888780;
+    --amber: #BA7517;
+    --green-light: #EAF3DE;
+    --pulse-color: #1D9E75;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--green);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(29,158,117,0.4); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(29,158,117,0); }
+  }
+  .logo-text { font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: var(--text); }
+  .logo-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .mode-badge {
+    font-size: 10px; padding: 3px 8px; border-radius: 4px;
+    background: rgba(29,158,117,0.15); color: var(--green);
+    border: 1px solid rgba(29,158,117,0.3); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  #clock { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  main { padding: 20px 24px; max-width: 1400px; margin: 0 auto; }
+
+  /* KPI row */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;
+  }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px;
+  }
+  .kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .kpi-value { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.blue { color: var(--blue); }
+  .kpi-sub { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+  /* Charts grid */
+  .charts-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;
+  }
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px;
+  }
+  .chart-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .chart-wrap { position: relative; }
+
+  /* Node table */
+  .node-section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+  .node-header { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { padding: 8px 16px; text-align: left; color: var(--muted); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 16px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .node-id { color: var(--green); font-weight: 600; }
+  .bar-cell { display: flex; align-items: center; gap: 8px; }
+  .mini-bar-bg { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; }
+  .mini-bar { height: 4px; background: var(--green); border-radius: 2px; transition: width 0.5s ease; }
+  .good { color: var(--green); }
+  .mid  { color: var(--amber); }
+  .bad  { color: #E24B4A; }
+
+  /* Status bar */
+  .status-bar {
+    display: flex; align-items: center; gap: 16px; padding: 10px 24px;
+    border-top: 1px solid var(--border); font-size: 10px; color: var(--muted);
+    background: var(--surface); position: sticky; bottom: 0;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-dot.live { background: var(--green); animation: pulse 1.5s infinite; }
+  .status-dot.mock { background: var(--amber); }
+  #redis-status { display: flex; align-items: center; gap: 5px; }
+
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <div>
+      <div class="logo-text">SEMANTIC CRAWLER</div>
+      <div class="logo-sub">Live monitoring dashboard</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="mode-badge" id="mode-badge">semantic</span>
+    <span id="clock">--:--:--</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Total pages crawled</div>
+      <div class="kpi-value blue" id="kpi-pages">0</div>
+      <div class="kpi-sub" id="kpi-elapsed">elapsed: 0s</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Harvest rate</div>
+      <div class="kpi-value green" id="kpi-harvest">0%</div>
+      <div class="kpi-sub">relevant pages</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Total frontier</div>
+      <div class="kpi-value" id="kpi-frontier">0</div>
+      <div class="kpi-sub">URLs pending</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Avg throughput</div>
+      <div class="kpi-value" id="kpi-throughput">0</div>
+      <div class="kpi-sub">pages/sec (all nodes)</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Harvest rate over time</div>
+      <div class="chart-wrap" style="height: 180px;">
+        <canvas id="harvestChart" role="img" aria-label="Line chart showing cumulative harvest rate over time"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Relevance score distribution</div>
+      <div class="chart-wrap" style="height: 180px;">
+        <canvas id="scoreChart" role="img" aria-label="Histogram of relevance scores for crawled pages"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="node-section">
+    <div class="node-header">Per-node stats</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Node</th>
+          <th>Pages/sec</th>
+          <th>Crawled</th>
+          <th>Harvest rate</th>
+          <th>Frontier</th>
+          <th>MB fetched</th>
+        </tr>
+      </thead>
+      <tbody id="node-table-body">
+        <tr><td colspan="6" style="color: var(--muted); text-align: center; padding: 20px;">Waiting for data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<div class="status-bar">
+  <div id="redis-status">
+    <div class="status-dot mock" id="redis-dot"></div>
+    <span id="redis-label">connecting...</span>
+  </div>
+  <span>|</span>
+  <span id="last-updated">last updated: —</span>
+  <span>|</span>
+  <span>poll: 1s</span>
+</div>
+
+<script>
+const API = window.location.origin;
+const POLL_MS = 1000;
+
+// ─── Clock ───────────────────────────────────
+setInterval(() => {
+  document.getElementById("clock").textContent =
+    new Date().toLocaleTimeString("en-US", {hour12: false});
+}, 1000);
+
+// ─── Charts setup ────────────────────────────
+const harvestCtx = document.getElementById("harvestChart").getContext("2d");
+const harvestChart = new Chart(harvestCtx, {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [{
+      label: "Harvest rate",
+      data: [],
+      borderColor: "#1D9E75",
+      backgroundColor: "rgba(29,158,117,0.08)",
+      fill: true,
+      tension: 0.4,
+      pointRadius: 0,
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { display: false },
+      y: {
+        min: 0, max: 1,
+        ticks: {
+          color: "#7d8590", font: { size: 10 },
+          callback: v => (v * 100).toFixed(0) + "%"
+        },
+        grid: { color: "rgba(255,255,255,0.04)" },
+        border: { display: false }
+      }
+    },
+    animation: { duration: 300 }
+  }
+});
+
+const scoreCtx = document.getElementById("scoreChart").getContext("2d");
+const scoreChart = new Chart(scoreCtx, {
+  type: "bar",
+  data: {
+    labels: [],
+    datasets: [{
+      label: "Pages",
+      data: [],
+      backgroundColor: (ctx) => {
+        const i = ctx.dataIndex;
+        const n = ctx.chart.data.labels.length;
+        const pct = i / n;
+        if (pct > 0.6) return "rgba(29,158,117,0.75)";
+        if (pct > 0.3) return "rgba(55,138,221,0.55)";
+        return "rgba(136,135,128,0.4)";
+      },
+      borderWidth: 0,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: {
+        ticks: {
+          color: "#7d8590", font: { size: 9 }, maxRotation: 0,
+          autoSkip: true, maxTicksLimit: 5
+        },
+        grid: { display: false },
+        border: { display: false }
+      },
+      y: {
+        ticks: { color: "#7d8590", font: { size: 9 } },
+        grid: { color: "rgba(255,255,255,0.04)" },
+        border: { display: false }
+      }
+    },
+    animation: { duration: 200 }
+  }
+});
+
+// ─── Data fetch ──────────────────────────────
+function fmt(n) { return n.toLocaleString(); }
+function pct(v) { return (v * 100).toFixed(1) + "%"; }
+function mb(b) { return (b / 1e6).toFixed(1); }
+
+async function fetchStats() {
+  try {
+    const r = await fetch(`${API}/api/stats`);
+    const data = await r.json();
+    const g = data.global;
+    const nodes = data.nodes;
+
+    // KPI
+    document.getElementById("kpi-pages").textContent = fmt(g.total_pages || 0);
+    document.getElementById("kpi-harvest").textContent = pct(g.harvest_rate || 0);
+    document.getElementById("kpi-elapsed").textContent = `elapsed: ${Math.round(g.elapsed_sec || 0)}s`;
+
+    let totalFrontier = 0, totalPps = 0;
+    Object.values(nodes).forEach(n => {
+      totalFrontier += n.frontier_size || 0;
+      totalPps += n.pages_per_sec || 0;
+    });
+    document.getElementById("kpi-frontier").textContent = fmt(totalFrontier);
+    document.getElementById("kpi-throughput").textContent = totalPps.toFixed(1);
+
+    // Mode badge
+    if (g.mode) document.getElementById("mode-badge").textContent = g.mode;
+
+    // Node table
+    const tbody = document.getElementById("node-table-body");
+    const maxPps = Math.max(...Object.values(nodes).map(n => n.pages_per_sec || 0), 1);
+    tbody.innerHTML = Object.entries(nodes).sort().map(([nid, n]) => {
+      const hr = n.harvest_rate || 0;
+      const hrClass = hr > 0.5 ? "good" : hr > 0.3 ? "mid" : "bad";
+      const barW = Math.round((n.pages_per_sec || 0) / maxPps * 100);
+      return `<tr>
+        <td class="node-id">${nid}</td>
+        <td>
+          <div class="bar-cell">
+            <span>${(n.pages_per_sec || 0).toFixed(1)}</span>
+            <div class="mini-bar-bg"><div class="mini-bar" style="width:${barW}%"></div></div>
+          </div>
+        </td>
+        <td>${fmt(n.pages_crawled || 0)}</td>
+        <td class="${hrClass}">${pct(hr)}</td>
+        <td>${fmt(n.frontier_size || 0)}</td>
+        <td>${mb(n.bytes_downloaded || 0)} MB</td>
+      </tr>`;
+    }).join("");
+
+    // Redis status
+    const connected = g.redis_connected;
+    document.getElementById("redis-dot").className = `status-dot ${connected ? "live" : "mock"}`;
+    document.getElementById("redis-label").textContent = connected ? "Redis live" : "Mock data (Redis offline)";
+    document.getElementById("last-updated").textContent = `last updated: ${new Date().toLocaleTimeString()}`;
+
+  } catch (e) {
+    console.warn("Stats fetch failed:", e);
+  }
+}
+
+async function fetchHistory() {
+  try {
+    const r = await fetch(`${API}/api/history`);
+    const data = await r.json();
+    if (data.length < 2) return;
+    harvestChart.data.labels = data.map(d => d.t.toFixed(0) + "s");
+    harvestChart.data.datasets[0].data = data.map(d => d.harvest_rate);
+    harvestChart.update("none");
+  } catch (e) {}
+}
+
+async function fetchScores() {
+  try {
+    const r = await fetch(`${API}/api/scores`);
+    const data = await r.json();
+    scoreChart.data.labels = data.labels;
+    scoreChart.data.datasets[0].data = data.counts;
+    scoreChart.update("none");
+  } catch (e) {}
+}
+
+// ─── Poll loop ───────────────────────────────
+async function tick() {
+  await Promise.all([fetchStats(), fetchHistory(), fetchScores()]);
+}
+tick();
+setInterval(tick, POLL_MS);
+setInterval(fetchScores, 3000);  // score dist updates slower
+</script>
+</body>
+</html>
