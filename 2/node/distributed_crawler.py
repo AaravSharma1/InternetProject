@@ -18,6 +18,7 @@ import os
 import sys
 import threading
 import time
+from datetime import datetime, timezone
 from typing import Any, Callable, Dict, List, Optional, Set
 from urllib.parse import urlparse
 
@@ -139,6 +140,11 @@ class DistributedCrawler(Crawler):
         self._semantic_scorer = None
         self._topic_centroid = None
 
+        # Aggregate counters for dashboard
+        self.bytes_downloaded: int = 0
+        self._last_pages_count: int = 0
+        self._last_beat_time: float = time.time()
+
         # Heartbeat control
         self._heartbeat_stop = threading.Event()
         self._heartbeat_thread: Optional[threading.Thread] = None
@@ -193,6 +199,29 @@ class DistributedCrawler(Crawler):
                     }, timeout=5)
                 except Exception as e:
                     logger.warning("Heartbeat failed: %s", e)
+
+                # Write live stats to Redis for the dashboard
+                try:
+                    now = time.time()
+                    elapsed = now - self._last_beat_time
+                    pages_delta = self.pages_crawled - self._last_pages_count
+                    pages_per_sec = round(pages_delta / elapsed, 2) if elapsed > 0 else 0.0
+                    self._last_pages_count = self.pages_crawled
+                    self._last_beat_time = now
+
+                    self._redis.set(f"crawler:stats:{self.node_id}", json.dumps({
+                        "pages_crawled":    self.pages_crawled,
+                        "relevant_count":   self.pages_relevant,
+                        "bytes_downloaded": self.bytes_downloaded,
+                        "pages_per_sec":    pages_per_sec,
+                        "frontier_size":    len(self.frontier),
+                        "harvest_rate":     round(self.pages_relevant / max(self.pages_crawled, 1), 4),
+                        "mode":             self.mode,
+                        "last_updated":     datetime.now(timezone.utc).isoformat(),
+                    }), ex=60)
+                except Exception as e:
+                    logger.debug("Dashboard stats write failed: %s", e)
+
                 self._heartbeat_stop.wait(HEARTBEAT_INTERVAL)
 
         self._heartbeat_thread = threading.Thread(target=_beat, daemon=True,
@@ -354,8 +383,20 @@ class DistributedCrawler(Crawler):
             )
 
         self.pages_crawled += 1
+        self.bytes_downloaded += result.byte_size
         if is_relevant:
             self.pages_relevant += 1
+
+        # Push relevance score to Redis for the dashboard score histogram
+        if self.mode == "semantic" and self._semantic_scorer and parsed is not None:
+            try:
+                score = self._semantic_scorer.score(
+                    parsed.text[:500], self._topic_centroid
+                ) if self._topic_centroid is not None else float(is_relevant)
+                self._redis.rpush(f"crawler:scores:{self.node_id}", round(score, 4))
+                self._redis.ltrim(f"crawler:scores:{self.node_id}", -500, -1)
+            except Exception:
+                pass
 
         event = CrawlEvent(
             timestamp=result.fetch_time,
@@ -447,6 +488,16 @@ class DistributedCrawler(Crawler):
 
         # Init semantic scorer if needed
         self._init_semantic()
+
+        # Write global crawl metadata for dashboard
+        try:
+            self._redis.set("crawler:global", json.dumps({
+                "start_time": time.time(),
+                "mode": self.mode,
+                "topic": self.topic or "",
+            }))
+        except Exception:
+            pass
 
         # Start receiver (pub/sub listener)
         self.receiver = URLReceiver(

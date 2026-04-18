@@ -93,6 +93,10 @@ def merge_metrics(output_dir: str, run_label: str) -> str:
             for row in reader:
                 all_rows.append([node_id] + row)
 
+    if header is None:
+        logger.warning("No node CSV files found in %s — skipping merge", output_dir)
+        return merged_path
+
     all_rows.sort(key=lambda r: float(r[1]))  # sort by timestamp
     with open(merged_path, "w", newline="") as f:
         writer = csv.writer(f)

@@ -52,6 +52,10 @@ class Crawler:
     bloom_error_rate : Target false-positive rate for Bloom filter.
     relevance_fn     : Optional callable (ParsedPage) -> bool.
                        Used to populate is_relevant in the metrics CSV.
+    link_priority_fn : Optional callable (ExtractedLink) -> float.
+                       Returns a priority score for a discovered link before
+                       it is pushed to the frontier.  Lower value = higher
+                       priority (min-heap).  Defaults to 0.0 (BFS order).
     allowed_domains  : If provided, only crawl URLs on these domains.
     """
 
@@ -68,6 +72,7 @@ class Crawler:
         bloom_capacity: int = 1_000_000,
         bloom_error_rate: float = 0.01,
         relevance_fn: Optional[Callable[[ParsedPage], bool]] = None,
+        link_priority_fn: Optional[Callable] = None,
         allowed_domains: Optional[Set[str]] = None,
     ) -> None:
         self.seed_urls = list(seed_urls)
@@ -80,6 +85,7 @@ class Crawler:
         self.metrics_path = metrics_path
         self.bloom = BloomFilter(capacity=bloom_capacity, error_rate=bloom_error_rate)
         self.relevance_fn: Callable[[ParsedPage], bool] = relevance_fn or (lambda _: True)
+        self.link_priority_fn: Callable = link_priority_fn or (lambda _: 0.0)
         self.allowed_domains = allowed_domains
 
         # Running counters (read by external code during a crawl)
@@ -141,7 +147,7 @@ class Crawler:
                     self.bloom.add(link.url)
                     await self.frontier.push(
                         link.url,
-                        priority=0.0,
+                        priority=self.link_priority_fn(link),
                         metadata={"depth": depth + 1, "src": url},
                     )
         else:

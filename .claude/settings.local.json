@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python 2/run_experiment.py --output my_experiments/ compare --seeds https://arxiv.org/list/cs.LG/recent --modes bfs --nodes 2 --max-pages 50 --workers 4 --delay 1.0)",
+      "Bash(python 2/run_experiment.py --output my_experiments/ --coord-port 5001 compare --seeds https://arxiv.org/list/cs.LG/recent --modes bfs --nodes 2 --max-pages 50 --workers 4 --delay 1.0)",
+      "Bash(redis-cli keys *)",
+      "Bash(redis-cli get *)",
+      "Bash(curl -s http://localhost:5050/api/stats)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python *)"
+    ]
+  }
+}

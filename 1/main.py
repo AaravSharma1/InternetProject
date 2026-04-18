@@ -3,22 +3,28 @@ CLI entry point for the BFS crawler.
 
 Usage
 -----
-# Basic BFS crawl
+# Basic BFS crawl (no topic — accepts all pages)
 python main.py --seeds https://en.wikipedia.org/wiki/Web_crawler \
                --max-pages 500 --workers 8
+
+# Topic-focused crawl (semantic prioritization + relevance filtering)
+python main.py --seeds https://arxiv.org \
+               --topic "deep learning research papers" "neural networks survey" \
+               --topic-threshold 0.3 \
+               --max-pages 500
 
 # Restrict to a single domain
 python main.py --seeds https://news.ycombinator.com \
                --allowed-domains news.ycombinator.com \
                --max-pages 200 --delay 2
 
-# Custom output paths
-python main.py --seeds https://example.com \
-               --db my_crawl.db --metrics my_run.csv
-
 All options
 -----------
   --seeds           One or more seed URLs (space-separated)
+  --topic           One or more topic description phrases for focused crawling.
+                    When provided, uses SemanticPrioritizer to score pages and
+                    rank discovered links.  Omit for plain BFS.
+  --topic-threshold Cosine similarity cutoff for marking a page relevant (default 0.3)
   --max-pages       Stop after N successfully fetched pages (default 1000)
   --workers         Max concurrent HTTP requests (default 10)
   --delay           Seconds between requests to the same domain (default 1.0)
@@ -33,6 +39,7 @@ import argparse
 import asyncio
 import logging
 import sys
+from pathlib import Path
 
 from crawler import BFSFrontier, Crawler
 
@@ -40,12 +47,21 @@ from crawler import BFSFrontier, Crawler
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="crawler",
-        description="Single-node async BFS web crawler",
+        description="Single-node async web crawler",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     p.add_argument(
         "--seeds", nargs="+", required=True,
         metavar="URL", help="Seed URL(s) to start the crawl",
+    )
+    p.add_argument(
+        "--topic", nargs="+", default=None,
+        metavar="PHRASE",
+        help="Topic description phrases for semantic focused crawling",
+    )
+    p.add_argument(
+        "--topic-threshold", type=float, default=0.3,
+        help="Cosine similarity cutoff to mark a page as relevant (0–1)",
     )
     p.add_argument("--max-pages", type=int, default=1_000,
                    help="Maximum pages to fetch")
@@ -68,6 +84,38 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
+def _build_topic_hooks(topic_phrases, threshold):
+    """Return (frontier, relevance_fn, link_priority_fn) for semantic crawling."""
+    part3_dir = str(Path(__file__).resolve().parent.parent / "3")
+    if part3_dir not in sys.path:
+        sys.path.insert(0, part3_dir)
+
+    from semantic_prioritizer import SemanticPrioritizer
+    from crawler import PriorityFrontier
+
+    logging.getLogger(__name__).info(
+        "Loading SemanticPrioritizer (all-MiniLM-L6-v2)..."
+    )
+    prioritizer = SemanticPrioritizer(relevance_threshold=threshold)
+    centroid = prioritizer.init_centroid(topic_phrases)
+
+    logging.getLogger(__name__).info(
+        "Topic centroid initialized from %d phrase(s): %s",
+        len(topic_phrases), topic_phrases,
+    )
+
+    def relevance_fn(page):
+        score = prioritizer.score(page.text[:1000], centroid)
+        return score >= threshold
+
+    def link_priority_fn(link):
+        # PriorityFrontier is a min-heap: negate so higher scores surface first
+        ctx = prioritizer.build_url_context(link.anchor_text, link.context, link.url)
+        return -prioritizer.score(ctx, centroid)
+
+    return PriorityFrontier(), relevance_fn, link_priority_fn
+
+
 def main() -> None:
     args = build_parser().parse_args()
 
@@ -78,9 +126,18 @@ def main() -> None:
         stream=sys.stderr,
     )
 
+    frontier = BFSFrontier()
+    relevance_fn = None
+    link_priority_fn = None
+
+    if args.topic:
+        frontier, relevance_fn, link_priority_fn = _build_topic_hooks(
+            args.topic, args.topic_threshold
+        )
+
     crawler = Crawler(
         seed_urls=args.seeds,
-        frontier=BFSFrontier(),
+        frontier=frontier,
         max_pages=args.max_pages,
         max_workers=args.workers,
         rate_limit_delay=args.delay,
@@ -88,6 +145,8 @@ def main() -> None:
         metrics_path=args.metrics,
         allowed_domains=set(args.allowed_domains) if args.allowed_domains else None,
         bloom_capacity=args.bloom_capacity,
+        relevance_fn=relevance_fn,
+        link_priority_fn=link_priority_fn,
     )
 
     asyncio.run(crawler.run())
