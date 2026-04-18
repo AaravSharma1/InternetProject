@@ -1,0 +1,13 @@
+[
+  {
+    "label": "compare_semantic_2nodes",
+    "mode": "semantic",
+    "node_count": 2,
+    "max_pages": 150,
+    "total_pages": 150,
+    "total_relevant": 47,
+    "duration_sec": 124.19,
+    "throughput_pages_per_sec": 1.21,
+    "merged_csv": "my_experiments/compare_semantic_2nodes/compare_semantic_2nodes_merged.csv"
+  }
+]

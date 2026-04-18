@@ -3,9 +3,9 @@
   "mode": "bfs",
   "node_count": 2,
   "max_pages": 150,
-  "total_pages": 0,
-  "total_relevant": 0,
-  "duration_sec": 0,
-  "throughput_pages_per_sec": 0,
+  "total_pages": 150,
+  "total_relevant": 41,
+  "duration_sec": 65.77,
+  "throughput_pages_per_sec": 2.28,
   "merged_csv": "my_experiments/compare_bfs_2nodes/compare_bfs_2nodes_merged.csv"
 }

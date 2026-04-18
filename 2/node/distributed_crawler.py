@@ -463,6 +463,9 @@ class DistributedCrawler(Crawler):
                 await asyncio.sleep(0.5)
                 continue
             elif not pending:
+                # Budget hit with frontier non-empty — nothing left to dispatch
+                if self.pages_crawled >= self.max_pages:
+                    break
                 await asyncio.sleep(0.1)
                 continue
 
@@ -486,8 +489,47 @@ class DistributedCrawler(Crawler):
         # Register with coordinator
         self._register()
 
-        # Init semantic scorer if needed
+        # Start receiver and assignment listener NOW — before model loading,
+        # so we don't miss rebalance messages published while _init_semantic
+        # blocks (sentence-transformer load can take 20-30 s).
+        self.receiver = URLReceiver(
+            self.redis_url, self.node_id, self.frontier,
+            comm_tracker=self.comm_tracker,
+        )
+        loop = asyncio.get_running_loop()
+        self.receiver.set_loop(loop)
+        self.receiver.start()
+
+        self._start_heartbeat()
+        self._start_assignment_listener()
+
+        # Init semantic scorer — may block for model load
         self._init_semantic()
+
+        # After (possibly slow) model load, re-sync the partition assignment
+        # from Redis in case a rebalance happened while we were loading.
+        try:
+            raw = self._redis.get(
+                __import__("config").ASSIGNMENT_KEY
+            )
+            if raw and self.url_router:
+                data = json.loads(raw)
+                nodes = data.get("nodes", {})
+                my_info = nodes.get(self.node_id)
+                if my_info:
+                    self._local_partitions = my_info["partitions"]
+                    node_hosts = {
+                        nid: {"partitions": info["partitions"]}
+                        for nid, info in nodes.items()
+                    }
+                    self.url_router.update_assignment(
+                        self._local_partitions, node_hosts)
+                    logger.info(
+                        "Post-init assignment sync: %d local partitions",
+                        len(self._local_partitions),
+                    )
+        except Exception as e:
+            logger.warning("Assignment re-sync failed: %s", e)
 
         # Write global crawl metadata for dashboard
         try:
@@ -498,21 +540,6 @@ class DistributedCrawler(Crawler):
             }))
         except Exception:
             pass
-
-        # Start receiver (pub/sub listener)
-        self.receiver = URLReceiver(
-            self.redis_url, self.node_id, self.frontier,
-            comm_tracker=self.comm_tracker,
-        )
-        loop = asyncio.get_running_loop()
-        self.receiver.set_loop(loop)
-        self.receiver.start()
-
-        # Start heartbeat
-        self._start_heartbeat()
-
-        # Start assignment rebalance listener
-        self._start_assignment_listener()
 
         try:
             # Seed frontier — only URLs that hash to our partitions

@@ -1,0 +1,11 @@
+{
+  "label": "compare_link_priority_2nodes",
+  "mode": "link_priority",
+  "node_count": 2,
+  "max_pages": 150,
+  "total_pages": 150,
+  "total_relevant": 101,
+  "duration_sec": 68.62,
+  "throughput_pages_per_sec": 2.19,
+  "merged_csv": "my_experiments/compare_link_priority_2nodes/compare_link_priority_2nodes_merged.csv"
+}

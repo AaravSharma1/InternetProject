@@ -8,7 +8,17 @@
       "Bash(redis-cli get *)",
       "Bash(curl -s http://localhost:5050/api/stats)",
       "Bash(python3 -m json.tool)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(gh pr *)",
+      "Bash(kill 69255 69257 69260 69261 69262)",
+      "Bash(awk '{print $2, $11, $12, $13, $14}')",
+      "Bash(awk -F',' 'NR>1 {print $7}' my_experiments/compare_link_priority_2nodes/node-1_metrics.csv)",
+      "Bash(awk -F',' 'NR>1 && $7==\"\"' my_experiments/compare_link_priority_2nodes/node-1_metrics.csv)",
+      "Bash(awk -F',' 'NR>1 && $7!=\"\"' my_experiments/compare_link_priority_2nodes/node-1_metrics.csv)",
+      "Bash(awk '{print $11, $13, $14, $15, $16, $17}')",
+      "Bash(pkill -f \"launch.py\")",
+      "Bash(pkill -f \"run_experiment.py\")",
+      "Bash(redis-cli flushall *)"
     ]
   }
 }
