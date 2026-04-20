@@ -1,0 +1,76 @@
+timestamp,url,bytes_downloaded,fetch_latency_ms,status_code,is_relevant,cumulative_pages,cumulative_relevant,error
+1776476594.29089,https://arxiv.org/list/cs.LG/recent,87779,13.867624977137893,200,True,1,1,
+1776476594.375084,https://arxiv.org/IgnoreMe,0,0.0,0,False,2,1,robots.txt disallowed
+1776476594.410657,https://www.cornell.edu/,81877,10.795667010825127,200,True,3,2,
+1776476594.416611,https://tech.cornell.edu/arxiv/,180461,41.20637499727309,200,True,4,3,
+1776476594.49858,https://arxiv.org/search/advanced,0,0.0,0,False,5,3,robots.txt disallowed
+1776476594.4568052,https://info.arxiv.org/about/ourmembers.html,101513,236.82637501042336,200,True,6,4,
+1776476595.2915,https://arxiv.org/,42869,8.671416027937084,200,True,7,5,
+1776476595.457912,https://info.arxiv.org/help,92836,119.67899999581277,200,True,8,6,
+1776476596.2926478,https://arxiv.org/login,12373,9.78004198987037,200,True,9,7,
+1776476596.459023,https://info.arxiv.org/about/donate.html,87629,157.93595800641924,200,True,10,8,
+1776476597.293802,https://arxiv.org/list/cs.LG/recent?skip=0&show=50,87779,9.97033400926739,200,True,11,9,
+1776476597.4600918,https://info.arxiv.org/about,89776,127.7441669953987,200,True,12,10,
+1776476598.295011,https://arxiv.org/list/cs.LG/recent?skip=162&show=50,98886,12.828667007852346,200,True,13,11,
+1776476599.2961862,https://arxiv.org/list/cs.LG/recent?skip=330&show=50,102914,11.004542000591755,200,True,14,12,
+1776476600.297152,https://arxiv.org/list/cs.LG/recent?skip=470&show=50,93207,11.808499984908849,200,True,15,13,
+1776476601.297904,https://arxiv.org/list/cs.LG/recent?skip=760&show=50,89878,12.455124990083277,200,True,16,14,
+1776476602.298999,https://arxiv.org/list/cs.LG/new,815194,34.4804169726558,200,True,17,15,
+1776476603.30016,https://arxiv.org/list/cs.LG/recent?skip=50&show=50,91346,11.97616697754711,200,True,18,16,
+1776476604.3012679,https://arxiv.org/list/cs.LG/recent?skip=100&show=50,97456,10.586082993540913,200,True,19,17,
+1776476605.301573,https://arxiv.org/list/cs.LG/recent?skip=150&show=50,98080,8.826125005725771,200,True,20,18,
+1776476606.3020768,https://arxiv.org/list/cs.LG/recent?skip=900&show=50,81171,9.59870801307261,200,True,21,19,
+1776476607.303204,https://arxiv.org/list/cs.LG/recent?skip=0&show=25,51261,8.48487502662465,200,True,22,20,
+1776476607.365122,https://arxiv.org/format/2604.15297,0,0.0,0,False,23,20,robots.txt disallowed
+1776476607.3653371,"https://arxiv.org/search/cs?searchtype=author&query=Gorishniy,+Y",0,0.0,0,False,24,20,robots.txt disallowed
+1776476607.365495,"https://arxiv.org/search/cs?searchtype=author&query=Rubachev,+I",0,0.0,0,False,25,20,robots.txt disallowed
+1776476607.3656662,"https://arxiv.org/search/cs?searchtype=author&query=Feoktistov,+D",0,0.0,0,False,26,20,robots.txt disallowed
+1776476607.3659468,"https://arxiv.org/search/cs?searchtype=author&query=Babenko,+A",0,0.0,0,False,27,20,robots.txt disallowed
+1776476608.304123,https://arxiv.org/list/cs.LG/recent?skip=0&show=100,164984,18.942291964776814,200,True,28,21,
+1776476607.6993148,https://github.com/yandex-research/tabular-dl-optimizers,360005,736.3702909788117,200,True,29,22,
+1776476609.3051488,https://arxiv.org/list/cs.LG/recent?skip=0&show=2000,1515887,50.77558400807902,200,True,30,23,
+1776476610.478949,https://arxiv.org/abs/2604.15297,46201,7.490374962799251,200,True,31,24,
+1776476610.499956,https://arxiv.org/format/2604.15273,0,0.0,0,False,32,24,robots.txt disallowed
+1776476610.500106,"https://arxiv.org/search/cs?searchtype=author&query=Innan,+N",0,0.0,0,False,33,24,robots.txt disallowed
+1776476610.500227,"https://arxiv.org/search/cs?searchtype=author&query=Rosato,+A",0,0.0,0,False,34,24,robots.txt disallowed
+1776476610.5003362,"https://arxiv.org/search/cs?searchtype=author&query=Marchisio,+A",0,0.0,0,False,35,24,robots.txt disallowed
+1776476610.50049,"https://arxiv.org/search/cs?searchtype=author&query=Shafique,+M",0,0.0,0,False,36,24,robots.txt disallowed
+1776476611.480078,https://arxiv.org/pdf/2604.15297,759400,32.60645898990333,200,False,37,24,non-HTML content-type
+1776476612.481233,https://arxiv.org/html/2604.15297v1,802026,28.062042023520917,200,True,38,25,
+1776476612.676445,https://arxiv.org/format/2604.15259,0,0.0,0,False,39,25,robots.txt disallowed
+1776476612.67661,"https://arxiv.org/search/cs?searchtype=author&query=Labovich,+A",0,0.0,0,False,40,25,robots.txt disallowed
+1776476613.482443,https://arxiv.org/abs/2604.15273,47665,10.324625007342547,200,True,41,26,
+1776476614.483579,https://arxiv.org/pdf/2604.15273,492450,20.114957995247096,200,False,42,26,non-HTML content-type
+1776476614.5040472,https://arxiv.org/format/2604.15242,0,0.0,0,False,43,26,robots.txt disallowed
+1776476614.504312,"https://arxiv.org/search/cs?searchtype=author&query=Fiegel,+C",0,0.0,0,False,44,26,robots.txt disallowed
+1776476614.504551,"https://arxiv.org/search/cs?searchtype=author&query=Menard,+P",0,0.0,0,False,45,26,robots.txt disallowed
+1776476614.504888,"https://arxiv.org/search/cs?searchtype=author&query=Kozuno,+T",0,0.0,0,False,46,26,robots.txt disallowed
+1776476614.50526,"https://arxiv.org/search/cs?searchtype=author&query=Valko,+M",0,0.0,0,False,47,26,robots.txt disallowed
+1776476614.5054321,"https://arxiv.org/search/cs?searchtype=author&query=Perchet,+V",0,0.0,0,False,48,26,robots.txt disallowed
+1776476615.484737,https://arxiv.org/html/2604.15273v1,216501,12.037458014674485,200,True,49,27,
+1776476616.485292,https://arxiv.org/abs/2604.15259,46310,9.02520795352757,200,True,50,28,
+1776476616.527978,https://arxiv.org/format/2604.15201,0,0.0,0,False,51,28,robots.txt disallowed
+1776476616.5283551,"https://arxiv.org/search/cs?searchtype=author&query=Senczyszyn,+S+A",0,0.0,0,False,52,28,robots.txt disallowed
+1776476616.528633,"https://arxiv.org/search/cs?searchtype=author&query=Havens,+T+C",0,0.0,0,False,53,28,robots.txt disallowed
+1776476616.528867,"https://arxiv.org/search/cs?searchtype=author&query=Rice,+N",0,0.0,0,False,54,28,robots.txt disallowed
+1776476616.529061,"https://arxiv.org/search/cs?searchtype=author&query=Summers,+J+E",0,0.0,0,False,55,28,robots.txt disallowed
+1776476616.5292008,"https://arxiv.org/search/cs?searchtype=author&query=Werner,+B+D",0,0.0,0,False,56,28,robots.txt disallowed
+1776476616.529377,"https://arxiv.org/search/cs?searchtype=author&query=Schumeg,+B+J",0,0.0,0,False,57,28,robots.txt disallowed
+1776476617.486381,https://arxiv.org/pdf/2604.15259,1046517,33.36508298525587,200,False,58,28,non-HTML content-type
+1776476618.487095,https://arxiv.org/abs/2604.15242,45107,10.655333986505866,200,True,59,29,
+1776476619.488297,https://arxiv.org/pdf/2604.15242,667599,24.75058299023658,200,False,60,29,non-HTML content-type
+1776476619.513852,https://arxiv.org/format/2604.15181,0,0.0,0,False,61,29,robots.txt disallowed
+1776476619.514304,"https://arxiv.org/search/cs?searchtype=author&query=Ma,+T",0,0.0,0,False,62,29,robots.txt disallowed
+1776476619.51465,"https://arxiv.org/search/cs?searchtype=author&query=Rosafalco,+L",0,0.0,0,False,63,29,robots.txt disallowed
+1776476619.51508,"https://arxiv.org/search/cs?searchtype=author&query=Cui,+W",0,0.0,0,False,64,29,robots.txt disallowed
+1776476619.515764,"https://arxiv.org/search/cs?searchtype=author&query=Zhao,+L",0,0.0,0,False,65,29,robots.txt disallowed
+1776476619.516088,"https://arxiv.org/search/cs?searchtype=author&query=Frangi,+A",0,0.0,0,False,66,29,robots.txt disallowed
+1776476620.489398,https://arxiv.org/abs/2604.15201,47795,9.13550000404939,200,True,67,30,
+1776476621.4905212,https://arxiv.org/pdf/2604.15201,647432,23.196417023427784,200,False,68,30,non-HTML content-type
+1776476621.514783,https://arxiv.org/format/2604.15180,0,0.0,0,False,69,30,robots.txt disallowed
+1776476621.515829,"https://arxiv.org/search/cs?searchtype=author&query=Gon%C3%A7alves,+N",0,0.0,0,False,70,30,robots.txt disallowed
+1776476622.491621,https://arxiv.org/abs/2604.15181,46933,8.837083005346358,200,True,71,31,
+1776476623.492843,https://arxiv.org/pdf/2604.15181,24404994,776.4224160346203,200,False,72,31,non-HTML content-type
+1776476624.493967,https://arxiv.org/html/2604.15181v1,469422,22.752791992388666,200,True,73,32,
+1776476625.495106,https://arxiv.org/abs/2604.15180,47072,13.33899999735877,200,True,74,33,
+1776476626.4963572,https://arxiv.org/pdf/2604.15180,1020071,29.98887497233227,200,False,75,33,non-HTML content-type

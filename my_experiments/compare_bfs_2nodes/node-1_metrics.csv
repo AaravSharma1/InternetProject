@@ -1,0 +1,143 @@
+timestamp,url,bytes_downloaded,fetch_latency_ms,status_code,is_relevant,cumulative_pages,cumulative_relevant,error
+1776476525.033568,https://github.com/arXiv/arxiv-docs,331627,1581.4085829770193,200,True,1,1,
+1776476524.360288,https://arxiv.org/about/funding,0,3203.905125032179,0,False,2,1,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476524.47871,https://info.arxiv.org/about/governance.html,0,3146.5972079895437,0,False,3,1,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476525.4797661,https://info.arxiv.org/about/people/arxiv_advisory_board.html,0,3146.380416001193,0,False,4,1,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476526.4809809,https://info.arxiv.org/about/people/index.html,0,3145.043333002832,0,False,5,1,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476529.850581,https://blog.arxiv.org/,69928,98.35262497654185,200,True,6,2,
+1776476527.482238,https://info.arxiv.org/about/people/science_advisory_council.html,0,3149.0048339474015,0,False,7,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476528.483385,https://info.arxiv.org/about/people/editorial_advisory_council.html,0,3143.015416979324,0,False,8,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476529.484606,https://info.arxiv.org/about/funding.html,0,3144.631417002529,0,False,9,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476530.485709,https://info.arxiv.org/about/reports/index.html,0,3168.6550420126878,0,False,10,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476531.486849,https://info.arxiv.org/about/accessibility.html,0,3159.1449590050615,0,False,11,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476532.48806,https://info.arxiv.org/submit_tex.html,0,3242.9489999776706,0,False,12,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476533.489287,https://info.arxiv.org/submit_pdf.html,0,3240.786125010345,0,False,13,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476534.4903731,https://info.arxiv.org/submit_legacy_differences.html,0,3228.992084041238,0,False,14,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476535.491543,https://info.arxiv.org/faq/index.html,0,3236.23433400644,0,False,15,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476536.492745,https://info.arxiv.org/faq/amslatex2000.html,0,3237.4539579614066,0,False,16,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476537.4937038,https://info.arxiv.org/faq/citelinks.html,0,3245.2705000177957,0,False,17,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476538.494876,https://info.arxiv.org/faq/doublesubscript.html,0,3242.1173749607988,0,False,18,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476539.494901,https://info.arxiv.org/faq/dvips.html,0,3237.6185409957543,0,False,19,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476540.495442,https://info.arxiv.org/faq/freefonts.html,0,3254.8993329983205,0,False,20,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476541.49656,https://info.arxiv.org/faq/landscape.html,0,3236.2232910236344,0,False,21,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476542.4977012,https://info.arxiv.org/faq/mistakes.html,0,3243.7547920271754,0,False,22,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476543.498838,https://info.arxiv.org/faq/pd1enc.html,0,3247.0204159617424,0,False,23,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476544.499979,https://info.arxiv.org/faq/pdfrotate.html,0,3256.154791044537,0,False,24,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476545.5011299,https://info.arxiv.org/faq/psjunk.html,0,3238.7709169997834,0,False,25,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476546.5023339,https://info.arxiv.org/faq/revtex.html,0,3271.7037909897044,0,False,26,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476547.502908,https://info.arxiv.org/faq/srcfaq.html,0,3251.2452909722924,0,False,27,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476548.504104,https://info.arxiv.org/faq/statfaq.html,0,3246.318457997404,0,False,28,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476549.5052989,https://info.arxiv.org/faq/texlive.html,0,3240.5865420005284,0,False,29,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476550.506562,https://info.arxiv.org/faq/texprobs.html,0,3245.4298340016976,0,False,30,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476551.5078988,https://info.arxiv.org/faq/today.html,0,3240.145666990429,0,False,31,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476552.5090811,https://info.arxiv.org/faq/whynostamp.html,0,3252.1627499954775,0,False,32,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476553.510008,https://info.arxiv.org/ancillary_files.html,0,3375.986874976661,0,False,33,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476554.51041,https://info.arxiv.org/license/index.html,0,3240.173958009109,0,False,34,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476555.5116282,https://info.arxiv.org/overlap.html,0,3264.6756249596365,0,False,35,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476556.512762,https://info.arxiv.org/prep.html,0,3247.7119169780053,0,False,36,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476557.513186,https://info.arxiv.org/replace.html,0,3246.396416972857,0,False,37,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476558.5143769,https://info.arxiv.org/submit_index.html,0,3245.5947080161422,0,False,38,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476559.514812,https://info.arxiv.org/third_party_submission.html,0,3240.6727080233395,0,False,39,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476560.5160372,https://info.arxiv.org/versions.html,0,3243.3136670151725,0,False,40,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476561.517184,https://info.arxiv.org/faq/whytex.html,0,3247.625500021968,0,False,41,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476562.517705,https://info.arxiv.org/arxiv_identifier.html,0,3234.5664169988595,0,False,42,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476563.518875,https://info.arxiv.org/config_browser.html,0,3240.3819169849157,0,False,43,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476564.520045,https://info.arxiv.org/rss.html,0,3242.739957990125,0,False,44,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476565.521167,https://info.arxiv.org/license/reuse.html,0,3247.4637500126846,0,False,45,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476566.522343,https://info.arxiv.org/mathjax.html,0,3240.6700840219855,0,False,46,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476567.5234911,https://info.arxiv.org/registerhelp.html,0,3235.3413330274634,0,False,47,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476568.5246248,https://info.arxiv.org/author_identifiers.html,0,3243.80974995438,0,False,48,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476569.5257769,https://info.arxiv.org/authority.html,0,3222.561875008978,0,False,49,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476570.526449,https://info.arxiv.org/bulk_data/index.html,0,3239.995874988381,0,False,50,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476571.526596,https://info.arxiv.org/bulk_data_s3.html,0,3225.7682089693844,0,False,51,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476572.527734,https://info.arxiv.org/ir.html,0,3231.0705420095474,0,False,52,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476573.528833,https://info.arxiv.org/brand/index.html,0,3142.0684580225497,0,False,53,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476574.5297458,https://info.arxiv.org/brand/brand-guidelines.html,0,3140.834374993574,0,False,54,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476575.53087,https://info.arxiv.org/brand/images.html,0,3144.6427920018323,0,False,55,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476576.531986,https://info.arxiv.org/brand/logos.html,0,3150.030874996446,0,False,56,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476577.5331619,https://info.arxiv.org/brand/quotes.html,0,3142.5189579604194,0,False,57,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476578.534316,https://info.arxiv.org/brand/swag.html,0,3148.014000034891,0,False,58,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476579.534555,https://info.arxiv.org/labs/index.html,0,3148.579416971188,0,False,59,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476580.535816,https://info.arxiv.org/policies/code_of_conduct.html,0,3233.349584043026,0,False,60,2,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476582.6839612,https://github.com/arXiv/arxiv-docs/blob/develop/source/help/index.md,262574,1365.4995000106283,200,True,61,3,
+1776476581.5369081,https://info.arxiv.org/policies/privacy_policy.html,0,3233.253374986816,0,False,62,3,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476582.53808,https://info.arxiv.org/policies/identity_and_affiliation.html,0,3233.8035000138916,0,False,63,3,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476585.772597,https://arxiv.org/help,92836,312.6856660237536,200,True,64,4,
+1776476583.538757,https://info.arxiv.org/moderation/index.html,0,3242.146583041176,0,False,65,4,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476584.53927,https://info.arxiv.org/stats/index.html,0,3245.560458046384,0,False,66,4,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476587.774386,https://arxiv.org/help/subscribe,85512,215.97799996379763,200,True,67,5,
+1776476588.267006,https://subscribe.sorryapp.com/24846f03/email/new,34151,101.47579101612791,200,True,68,6,
+1776476585.5404859,https://info.arxiv.org/passwords.html,0,3238.5266660130583,0,False,69,6,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476588.8367748,https://www.cornell.edu/about/,87806,565.7136669615284,200,True,70,7,
+1776476589.2681332,https://subscribe.sorryapp.com/24846f03/slack/new,33836,195.84620802197605,200,True,71,8,
+1776476586.54168,https://info.arxiv.org/api/user-manual.html,0,3203.1660829670727,0,False,72,8,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476586.7736351,https://arxiv.org/help/policies/privacy_policy,0,3238.6260419734754,0,False,73,8,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476587.542579,https://info.arxiv.org/macro_list.html,0,3217.9032499552704,0,False,74,8,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776476588.774772,https://arxiv.org/help/web_accessibility,0,3255.6416249717586,0,False,75,8,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
