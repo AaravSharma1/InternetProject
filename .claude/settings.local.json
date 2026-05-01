@@ -18,7 +18,10 @@
       "Bash(awk '{print $11, $13, $14, $15, $16, $17}')",
       "Bash(pkill -f \"launch.py\")",
       "Bash(pkill -f \"run_experiment.py\")",
-      "Bash(redis-cli flushall *)"
+      "Bash(redis-cli flushall *)",
+      "Bash(python3 *)",
+      "Bash(/Users/rishabkalluri/miniconda3/bin/python -c \"import sentence_transformers, sklearn, numpy, matplotlib; print\\('ok'\\)\")",
+      "Bash(/Users/rishabkalluri/miniconda3/bin/python run_chunk_size_experiment.py)"
     ]
   }
 }

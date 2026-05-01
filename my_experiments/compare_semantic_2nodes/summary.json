@@ -4,8 +4,8 @@
   "node_count": 2,
   "max_pages": 150,
   "total_pages": 150,
-  "total_relevant": 47,
-  "duration_sec": 124.19,
-  "throughput_pages_per_sec": 1.21,
+  "total_relevant": 55,
+  "duration_sec": 111.25,
+  "throughput_pages_per_sec": 1.35,
   "merged_csv": "my_experiments/compare_semantic_2nodes/compare_semantic_2nodes_merged.csv"
 }

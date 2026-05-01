@@ -1,143 +1,77 @@
 timestamp,url,bytes_downloaded,fetch_latency_ms,status_code,is_relevant,cumulative_pages,cumulative_relevant,error
-1776476525.033568,https://github.com/arXiv/arxiv-docs,331627,1581.4085829770193,200,True,1,1,
-1776476524.360288,https://arxiv.org/about/funding,0,3203.905125032179,0,False,2,1,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476524.47871,https://info.arxiv.org/about/governance.html,0,3146.5972079895437,0,False,3,1,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476525.4797661,https://info.arxiv.org/about/people/arxiv_advisory_board.html,0,3146.380416001193,0,False,4,1,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476526.4809809,https://info.arxiv.org/about/people/index.html,0,3145.043333002832,0,False,5,1,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476529.850581,https://blog.arxiv.org/,69928,98.35262497654185,200,True,6,2,
-1776476527.482238,https://info.arxiv.org/about/people/science_advisory_council.html,0,3149.0048339474015,0,False,7,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476528.483385,https://info.arxiv.org/about/people/editorial_advisory_council.html,0,3143.015416979324,0,False,8,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476529.484606,https://info.arxiv.org/about/funding.html,0,3144.631417002529,0,False,9,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476530.485709,https://info.arxiv.org/about/reports/index.html,0,3168.6550420126878,0,False,10,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476531.486849,https://info.arxiv.org/about/accessibility.html,0,3159.1449590050615,0,False,11,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476532.48806,https://info.arxiv.org/submit_tex.html,0,3242.9489999776706,0,False,12,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476533.489287,https://info.arxiv.org/submit_pdf.html,0,3240.786125010345,0,False,13,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476534.4903731,https://info.arxiv.org/submit_legacy_differences.html,0,3228.992084041238,0,False,14,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476535.491543,https://info.arxiv.org/faq/index.html,0,3236.23433400644,0,False,15,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476536.492745,https://info.arxiv.org/faq/amslatex2000.html,0,3237.4539579614066,0,False,16,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476537.4937038,https://info.arxiv.org/faq/citelinks.html,0,3245.2705000177957,0,False,17,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476538.494876,https://info.arxiv.org/faq/doublesubscript.html,0,3242.1173749607988,0,False,18,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476539.494901,https://info.arxiv.org/faq/dvips.html,0,3237.6185409957543,0,False,19,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476540.495442,https://info.arxiv.org/faq/freefonts.html,0,3254.8993329983205,0,False,20,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476541.49656,https://info.arxiv.org/faq/landscape.html,0,3236.2232910236344,0,False,21,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476542.4977012,https://info.arxiv.org/faq/mistakes.html,0,3243.7547920271754,0,False,22,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476543.498838,https://info.arxiv.org/faq/pd1enc.html,0,3247.0204159617424,0,False,23,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476544.499979,https://info.arxiv.org/faq/pdfrotate.html,0,3256.154791044537,0,False,24,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476545.5011299,https://info.arxiv.org/faq/psjunk.html,0,3238.7709169997834,0,False,25,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476546.5023339,https://info.arxiv.org/faq/revtex.html,0,3271.7037909897044,0,False,26,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476547.502908,https://info.arxiv.org/faq/srcfaq.html,0,3251.2452909722924,0,False,27,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476548.504104,https://info.arxiv.org/faq/statfaq.html,0,3246.318457997404,0,False,28,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476549.5052989,https://info.arxiv.org/faq/texlive.html,0,3240.5865420005284,0,False,29,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476550.506562,https://info.arxiv.org/faq/texprobs.html,0,3245.4298340016976,0,False,30,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476551.5078988,https://info.arxiv.org/faq/today.html,0,3240.145666990429,0,False,31,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476552.5090811,https://info.arxiv.org/faq/whynostamp.html,0,3252.1627499954775,0,False,32,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476553.510008,https://info.arxiv.org/ancillary_files.html,0,3375.986874976661,0,False,33,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476554.51041,https://info.arxiv.org/license/index.html,0,3240.173958009109,0,False,34,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476555.5116282,https://info.arxiv.org/overlap.html,0,3264.6756249596365,0,False,35,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476556.512762,https://info.arxiv.org/prep.html,0,3247.7119169780053,0,False,36,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476557.513186,https://info.arxiv.org/replace.html,0,3246.396416972857,0,False,37,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476558.5143769,https://info.arxiv.org/submit_index.html,0,3245.5947080161422,0,False,38,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476559.514812,https://info.arxiv.org/third_party_submission.html,0,3240.6727080233395,0,False,39,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476560.5160372,https://info.arxiv.org/versions.html,0,3243.3136670151725,0,False,40,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476561.517184,https://info.arxiv.org/faq/whytex.html,0,3247.625500021968,0,False,41,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476562.517705,https://info.arxiv.org/arxiv_identifier.html,0,3234.5664169988595,0,False,42,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476563.518875,https://info.arxiv.org/config_browser.html,0,3240.3819169849157,0,False,43,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476564.520045,https://info.arxiv.org/rss.html,0,3242.739957990125,0,False,44,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476565.521167,https://info.arxiv.org/license/reuse.html,0,3247.4637500126846,0,False,45,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476566.522343,https://info.arxiv.org/mathjax.html,0,3240.6700840219855,0,False,46,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476567.5234911,https://info.arxiv.org/registerhelp.html,0,3235.3413330274634,0,False,47,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476568.5246248,https://info.arxiv.org/author_identifiers.html,0,3243.80974995438,0,False,48,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476569.5257769,https://info.arxiv.org/authority.html,0,3222.561875008978,0,False,49,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476570.526449,https://info.arxiv.org/bulk_data/index.html,0,3239.995874988381,0,False,50,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476571.526596,https://info.arxiv.org/bulk_data_s3.html,0,3225.7682089693844,0,False,51,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476572.527734,https://info.arxiv.org/ir.html,0,3231.0705420095474,0,False,52,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476573.528833,https://info.arxiv.org/brand/index.html,0,3142.0684580225497,0,False,53,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476574.5297458,https://info.arxiv.org/brand/brand-guidelines.html,0,3140.834374993574,0,False,54,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476575.53087,https://info.arxiv.org/brand/images.html,0,3144.6427920018323,0,False,55,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476576.531986,https://info.arxiv.org/brand/logos.html,0,3150.030874996446,0,False,56,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476577.5331619,https://info.arxiv.org/brand/quotes.html,0,3142.5189579604194,0,False,57,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476578.534316,https://info.arxiv.org/brand/swag.html,0,3148.014000034891,0,False,58,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476579.534555,https://info.arxiv.org/labs/index.html,0,3148.579416971188,0,False,59,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476580.535816,https://info.arxiv.org/policies/code_of_conduct.html,0,3233.349584043026,0,False,60,2,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476582.6839612,https://github.com/arXiv/arxiv-docs/blob/develop/source/help/index.md,262574,1365.4995000106283,200,True,61,3,
-1776476581.5369081,https://info.arxiv.org/policies/privacy_policy.html,0,3233.253374986816,0,False,62,3,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476582.53808,https://info.arxiv.org/policies/identity_and_affiliation.html,0,3233.8035000138916,0,False,63,3,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476585.772597,https://arxiv.org/help,92836,312.6856660237536,200,True,64,4,
-1776476583.538757,https://info.arxiv.org/moderation/index.html,0,3242.146583041176,0,False,65,4,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476584.53927,https://info.arxiv.org/stats/index.html,0,3245.560458046384,0,False,66,4,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476587.774386,https://arxiv.org/help/subscribe,85512,215.97799996379763,200,True,67,5,
-1776476588.267006,https://subscribe.sorryapp.com/24846f03/email/new,34151,101.47579101612791,200,True,68,6,
-1776476585.5404859,https://info.arxiv.org/passwords.html,0,3238.5266660130583,0,False,69,6,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476588.8367748,https://www.cornell.edu/about/,87806,565.7136669615284,200,True,70,7,
-1776476589.2681332,https://subscribe.sorryapp.com/24846f03/slack/new,33836,195.84620802197605,200,True,71,8,
-1776476586.54168,https://info.arxiv.org/api/user-manual.html,0,3203.1660829670727,0,False,72,8,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476586.7736351,https://arxiv.org/help/policies/privacy_policy,0,3238.6260419734754,0,False,73,8,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476587.542579,https://info.arxiv.org/macro_list.html,0,3217.9032499552704,0,False,74,8,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
-1776476588.774772,https://arxiv.org/help/web_accessibility,0,3255.6416249717586,0,False,75,8,"ClientPayloadError: 400, message:
-  Can not decode content-encoding: br"
+1776659926.877829,https://tech.cornell.edu/programs/masters-programs/,255502,81.20229101041332,200,True,1,1,
+1776659927.8791869,https://tech.cornell.edu,252333,100.4272919963114,200,True,2,2,
+1776659928.880469,https://tech.cornell.edu/programs/masters-programs/master-of-engineering-in-computer-science-part-time/,342640,107.98429197166115,200,True,3,3,
+1776659929.88215,https://tech.cornell.edu/programs/masters-programs/master-in-computer-science/,339404,159.9966250360012,200,True,4,4,
+1776659930.883251,https://tech.cornell.edu/programs/,192342,144.8840830125846,200,True,5,5,
+1776659931.884494,https://tech.cornell.edu/programs/masters-programs/jacobs-technion-cornell-dual-ms-connective-media/,331484,166.79245803970844,200,True,6,6,
+1776659932.8851829,https://tech.cornell.edu/programs/masters-programs/master-in-electrical-and-computer-engineering/,305789,73.37562501197681,200,True,7,7,
+1776659933.886476,https://tech.cornell.edu/programs/masters-programs/master-of-science-in-design-technology/,224999,71.64749997900799,200,True,8,8,
+1776659934.8875031,https://tech.cornell.edu/studio/,239317,58.65929101128131,200,True,9,9,
+1776659935.888656,https://tech.cornell.edu/studio/curriculum/,217956,42.378292011562735,200,True,10,10,
+1776659936.8898282,https://tech.cornell.edu/studio/faculty-practitioners/,232727,83.47891696030274,200,True,11,11,
+1776659937.891098,https://tech.cornell.edu/studio/real-world-outcomes/,226688,64.12958400323987,200,True,12,12,
+1776659938.892364,https://tech.cornell.edu/studio/culture/,222917,59.24487498123199,200,True,13,13,
+1776659939.893541,https://tech.cornell.edu/programs/summer-innovation-intensives/,244645,60.35495799733326,200,True,14,14,
+1776659940.8947399,https://tech.cornell.edu/admissions/mba-application/,212347,113.9810829772614,200,True,15,15,
+1776659941.8955698,https://tech.cornell.edu/impact/,183865,118.4641249710694,200,True,16,16,
+1776659942.8969688,https://tech.cornell.edu/impact/break-through-tech/,215421,40.09725002106279,200,True,17,17,
+1776659943.898019,https://tech.cornell.edu/impact/health-tech-hub/,210968,57.16337502235547,200,True,18,18,
+1776659944.8992279,https://tech.cornell.edu/impact/k12-initiative/,193004,50.21324998233467,200,True,19,19,
+1776659945.900476,https://tech.cornell.edu/impact/public-interest-tech/,213580,58.594707981683314,200,True,20,20,
+1776659946.9017222,https://tech.cornell.edu/impact/runway/,214263,81.85245795175433,200,True,21,21,
+1776659947.902835,https://tech.cornell.edu/impact/security-trust-and-safety-sets/,223446,65.47870801296085,200,True,22,22,
+1776659948.904182,https://tech.cornell.edu/research/,200288,62.14699998963624,200,True,23,23,
+1776659949.904553,https://tech.cornell.edu/research/business-entrepreneurship/,242490,222.33812499325722,200,True,24,24,
+1776659950.905647,https://tech.cornell.edu/research/data-modeling/,252336,79.03870899463072,200,True,25,25,
+1776659951.193114,https://www.youtube.com/channel/UCFjeMIAUhKT-7LeQwPVOTQQ,998523,463.0802909960039,200,True,26,26,
+1776659951.994113,https://www.linkedin.com/company/cornell-tech,0,0.0,0,False,27,26,robots.txt disallowed
+1776659951.906968,https://tech.cornell.edu/research/makerlab/,222432,121.9557499862276,200,True,28,27,
+1776659952.908136,https://tech.cornell.edu/campus/buildings/,234955,128.86216602055356,200,True,29,28,
+1776659953.909237,https://tech.cornell.edu/frontiers-of-ai-summit/,229391,56.81316601112485,200,True,30,29,
+1776659954.910361,https://tech.cornell.edu/visit-us,176082,117.6979590090923,200,True,31,30,
+1776659955.911237,https://tech.cornell.edu/studio,239317,89.40875000553206,200,True,32,31,
+1776659956.9124138,https://tech.cornell.edu/about/,187458,65.22691698046401,200,True,33,32,
+1776659952.3651352,https://www.tiktok.com/@cornelltech,0,4943.292792013381,0,False,34,32,"ClientPayloadError: 400, message:
+  Can not decode content-encoding: br"
+1776659957.913565,https://tech.cornell.edu/events/,219836,65.4647090123035,200,True,35,33,
+1776659958.461141,http://www.cornell.edu/,81872,96.66120901238173,200,True,36,34,
+1776659958.91474,https://tech.cornell.edu/news/,215181,52.28400003397837,200,True,37,35,
+1776659959.9158552,https://tech.cornell.edu/accessibility/,171565,51.605541026219726,200,True,38,36,
+1776659959.462251,https://www.cornell.edu/about/,87801,631.9251670502126,200,True,39,37,
+1776659960.4641469,https://www.cornell.edu/about/maps/,54914,71.77212502574548,200,True,40,38,
+1776659960.916748,https://tech.cornell.edu/diversity-inclusion/,190205,45.64662498887628,200,True,41,39,
+1776659961.1404412,https://admissions.cornell.edu/how-to-apply,61109,35.606958030257374,200,True,42,40,
+1776659961.517317,https://finaid.cornell.edu/,82878,59.173582994844764,200,True,43,41,
+1776659961.4650612,https://www.cornell.edu/about/locations/,43192,340.4666249989532,200,True,44,42,
+1776659961.917223,https://tech.cornell.edu/jobs/,175013,89.42779200151563,200,True,45,43,
+1776659961.80104,https://sce.cornell.edu/courses/programs/summer,99578,505.3612499614246,200,True,46,44,
+1776659962.4662359,https://www.cornell.edu/about/locations/ithaca/,59674,111.04887502733618,200,True,47,45,
+1776659962.918441,https://tech.cornell.edu/safety-security/,219729,132.19745794776827,200,True,48,46,
+1776659962.8011131,https://sce.cornell.edu/courses/programs/part-time,109688,388.6592499911785,200,True,49,47,
+1776659963.156787,https://provost.cornell.edu,19436,58.001625002361834,200,True,50,48,
+1776659963.353291,https://research-and-innovation.cornell.edu,81060,48.101749969646335,200,True,51,49,
+1776659963.270495,https://globallearning.cornell.edu/,24997,168.20775001542643,200,True,52,50,
+1776659963.467316,https://www.cornell.edu/academics/fields.cfm,236349,181.9825409911573,200,True,53,51,
+1776659963.909774,https://learninggoals.cornell.edu/,49863,173.2158749946393,200,True,54,52,
+1776659963.918834,https://tech.cornell.edu/jacobs-technion-cornell-institute,235028,191.25420798081905,200,True,55,53,
+1776659964.041079,https://engagedcornellhub.cornell.edu/,43810,134.90045798243955,200,True,56,54,
+1776659964.468543,https://www.cornell.edu/academics/colleges.cfm,75182,199.1759170196019,200,True,57,55,
+1776659964.716198,https://scl.cornell.edu/get-involved,29948,97.30604098876938,200,True,58,56,
+1776659965.469708,https://www.cornell.edu/life-at-cornell/athletics.cfm,39162,136.8734580464661,200,True,59,57,
+1776659966.470707,https://www.cornell.edu/life-at-cornell/health.cfm,46353,92.44495799066499,200,True,60,58,
+1776659966.905344,https://alumni.cornell.edu/,154976,71.74174999818206,200,True,61,59,
+1776659967.304149,https://news.cornell.edu/stories/2026/04/spring-cold-snaps-harm-nesting-tree-swallows-some-show-resilience,47438,154.0547080221586,200,True,62,60,
+1776659966.3640718,http://www.giving.cornell.edu/,105533,1147.0242920331657,200,True,63,61,
+1776659967.5075488,https://www.cornell.edu/life-at-cornell/live.cfm,42639,63.27520799823105,200,True,64,62,
+1776659968.30446,https://news.cornell.edu/stories/2026/04/alumnus-hopes-historical-lessons-boost-civic-engagement,47764,101.21537500526756,200,True,65,63,
+1776659968.508786,https://www.cornell.edu/life-at-cornell/in-a-day/,45398,385.7678329804912,200,True,66,64,
+1776659966.757899,https://www.studentessentials.cornell.edu/,371629,2515.8988339826465,200,True,67,65,
+1776659969.332381,https://www.cornell.edu/search/people.cfm,0,0.0,0,False,68,65,robots.txt disallowed
+1776659969.332172,http://news.cornell.edu,68910,174.05912495451048,200,True,69,66,
+1776659969.568432,https://www.cornell.edu/visit,78122,301.10654199961573,200,True,70,67,
+1776659970.33349,http://news.cornell.edu/,68910,84.62766703451052,200,True,71,68,
+1776659970.5696871,https://www.cornell.edu/visit/,78122,55.24720798712224,200,True,72,69,
+1776659971.334583,http://news.cornell.edu/media-relations/work-with-us,21827,448.11129197478294,200,True,73,70,
+1776659972.3358421,https://news.cornell.edu/podcast-research-matters,57047,228.51174999959767,200,True,74,71,
+1776659973.337027,https://news.cornell.edu/stories/2026/04/major-new-telescope-chilean-summit-opens-window-universe,76849,131.94841699441895,200,True,75,72,

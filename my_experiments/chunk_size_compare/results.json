@@ -1,0 +1,40 @@
+{
+  "topic_seeds": [
+    "machine learning research papers",
+    "deep learning neural networks",
+    "artificial intelligence research"
+  ],
+  "n_examples": 28,
+  "results": [
+    {
+      "chunk": 50,
+      "auc": 0.8520408163265306,
+      "mean_pos": 0.26939509330051287,
+      "mean_neg": 0.11341773040060486,
+      "separation": 0.155977362899908,
+      "latency_ms_per_url": 0.6675077428163994,
+      "latency_stdev_ms": 0.020451728596525727,
+      "avg_context_chars": 93.25
+    },
+    {
+      "chunk": 150,
+      "auc": 0.9285714285714286,
+      "mean_pos": 0.32880162979875294,
+      "mean_neg": 0.11270049839679684,
+      "separation": 0.21610113140195608,
+      "latency_ms_per_url": 0.9553163643431617,
+      "latency_stdev_ms": 0.017656943705980716,
+      "avg_context_chars": 193.25
+    },
+    {
+      "chunk": 300,
+      "auc": 0.9540816326530612,
+      "mean_pos": 0.3413493899362428,
+      "mean_neg": 0.09911435556464962,
+      "separation": 0.2422350343715932,
+      "latency_ms_per_url": 1.6342732071020043,
+      "latency_stdev_ms": 0.028130223156027916,
+      "avg_context_chars": 341.9642857142857
+    }
+  ]
+}
